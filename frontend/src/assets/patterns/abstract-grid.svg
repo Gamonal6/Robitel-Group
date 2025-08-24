@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Subtle abstract pattern (tileable). Uses palette: Bright Blue, Teal, Aqua -->
+  <defs>
+    <!-- background fill to ensure seamless tiling on white -->
+    <rect id="bg" x="0" y="0" width="200" height="200" fill="#FFFFFF"/>
+
+    <!-- dotted grid -->
+    <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.2" fill="#26C7CC" opacity="0.12"/>
+    </pattern>
+
+    <!-- diagonal strokes -->
+    <pattern id="strokes" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M0 40 L40 0" stroke="#4EB4F2" stroke-width="1" opacity="0.08"/>
+      <path d="M-20 40 L40 -20" stroke="#41ECA2" stroke-width="1" opacity="0.06"/>
+      <path d="M20 40 L60 0" stroke="#4EB4F2" stroke-width="1" opacity="0.06"/>
+    </pattern>
+
+    <!-- soft blobs for a hint of organic feel -->
+    <g id="blob" opacity="0.06">
+      <circle cx="0" cy="0" r="35" fill="#26C7CC"/>
+      <circle cx="22" cy="-12" r="28" fill="#4EB4F2"/>
+      <circle cx="-18" cy="10" r="22" fill="#41ECA2"/>
+    </g>
+  </defs>
+
+  <use href="#bg"/>
+  <rect x="0" y="0" width="200" height="200" fill="url(#dots)"/>
+  <rect x="0" y="0" width="200" height="200" fill="url(#strokes)"/>
+
+  <!-- place a few blobs so the tile appears varied but still seamless -->
+  <use href="#blob" x="50" y="50"/>
+  <use href="#blob" x="160" y="40"/>
+  <use href="#blob" x="120" y="150"/>
+</svg>

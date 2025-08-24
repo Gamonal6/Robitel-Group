@@ -1,0 +1,22 @@
+:root {
+  /* Palette 4 */
+  --bright-blue: #4EB4F2;
+  --vivid-green: #49EC30;
+  --deep-purple: #3524F0;
+  --teal: #41ECA2;
+  --aqua: #26C7CC;
+
+  /* General */
+  --primary-white: #FFFFFF;
+  --text-color: #333; /* Charcoal/Dark Gray */
+  --primary-black: #000000;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: var(--primary-white);
+  color: var(--text-color);
+}
+
+
