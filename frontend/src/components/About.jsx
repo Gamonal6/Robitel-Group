@@ -101,6 +101,24 @@ const FullBleed = styled.div`
   margin-right: calc(50% - 50vw);
 `;
 
+/* Full-bleed connected background band for the three banners */
+const ConnectedBand = styled.div`
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: var(--primary-white, #ffffff); /* back to white */
+  padding: 0; /* no added spacing */
+`;
+
+/* Contrasting full-bleed strip just for the 'What we do' heading */
+const HeadingStrip = styled.div`
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: transparent; /* blend with page */
+  padding: 0; /* no added spacing */
+`;
+
 const WhatWeDoItem = styled.div`
   position: relative;
   height: 320px; /* explicit height so inner 100% sizing works */
@@ -191,6 +209,8 @@ const BannerBackdrop = styled.div`
         : "linear-gradient(to right, rgba(53,36,240,1) 0%, rgba(53,36,240,1) 46%, rgba(53,36,240,0.44) 52%, rgba(53,36,240,0.32) 58%, rgba(53,36,240,0.22) 66%, rgba(53,36,240,0.12) 74%, rgba(53,36,240,0.06) 84%, rgba(53,36,240,0.00) 92%)"};
   }
 `;
+
+/* remove big banner wrappers (reverted) */
 
 const WhatWeDoCard = styled.div`
   background: var(--primary-white);
@@ -573,6 +593,7 @@ const About = () => {
         </AboutHero>
       </RevealOnScroll>
       <ContentWrapper className="about-wrapper">
+        <ConnectedBand>
 
         <SectionBlock>
           <RevealOnScroll>
@@ -643,6 +664,8 @@ const About = () => {
             </WhatWeDoBlock>
           </RevealOnScroll>
         </SectionBlock>
+
+        </ConnectedBand>
         <SectionBlock>
           <ValuesGrid>
             <RevealOnScroll>
