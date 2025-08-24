@@ -2,16 +2,37 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const AboutContainer = styled.div`
-  padding: 0 2rem; /* hero sits flush to top */
+  /* Offset for fixed navbar to standardize hero distance */
+  padding: 4.5rem 2rem 0;
 `;
 
 /* What We Do section styles */
 const WhatWeDoBlock = styled.section`
-  background: transparent; /* remove green tint */
-  border: none; /* remove border */
+  position: relative; /* enable decorative layers */
+  background: transparent; /* keep content area clean */
+  border: none;
   border-radius: 0;
   padding: 0; /* no extra padding around items */
-  box-shadow: none; /* remove shadow */
+  box-shadow: none;
+
+  /* Faint telecom grid background */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -8px 0 -8px 0; /* extend slightly beyond */
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(53,36,240,0.06) 0 1px, transparent 1px),
+      radial-gradient(circle at 62% 74%, rgba(103,232,249,0.06) 0 1px, transparent 1px),
+      linear-gradient(to right, rgba(53,36,240,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(53,36,240,0.06) 1px, transparent 1px);
+    background-size: auto, auto, 48px 48px, 48px 48px;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Angled divider at the top to separate sections */
+  /* diagonal divider removed */
 `;
 
 const WhatWeDoGrid = styled.div`
@@ -19,6 +40,58 @@ const WhatWeDoGrid = styled.div`
   flex-direction: column;
   gap: 1rem; /* space between banners */
   margin-top: 0.5rem;
+`;
+
+/* Split-styled heading: solid 'What' + gradient 'we do' with slide-in */
+const slideInGlow = keyframes`
+  0% { opacity: 0; transform: translateX(-14px); text-shadow: 0 0 0 rgba(53,36,240,0); }
+  100% { opacity: 1; transform: translateX(0); text-shadow: 0 0 12px rgba(53,36,240,0.18); }
+`;
+
+const WhatHeading = styled.h2`
+  position: relative;
+  z-index: 1; /* above decorative layers */
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  margin: 0.25rem 0 0.35rem;
+  text-align: center;
+  letter-spacing: 0.02em;
+  font-weight: 800;
+  animation: ${slideInGlow} 720ms ease both;
+
+  .solid {
+    color: var(--deep-purple);
+  }
+  .gradient {
+    background: linear-gradient(90deg, var(--aqua), var(--deep-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+`;
+
+/* Animated signal-like underline beneath heading */
+const waveShift = keyframes`
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+`;
+
+const SignalUnderline = styled.div`
+  position: relative;
+  z-index: 1;
+  height: 4px;
+  width: 240px;
+  margin: 0.25rem auto 0.65rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg,
+    rgba(53,36,240,0.0),
+    rgba(53,36,240,0.85),
+    rgba(103,232,249,0.9),
+    rgba(53,36,240,0.85),
+    rgba(53,36,240,0.0)
+  );
+  background-size: 200% 100%;
+  animation: ${waveShift} 1600ms linear infinite;
+  box-shadow: 0 0 10px rgba(103,232,249,0.35);
 `;
 
 /* Full-bleed wrapper to make a child span entire viewport width */
@@ -272,13 +345,13 @@ const AboutHero = styled.section`
   border: none; /* remove border */
   border-radius: 0;
   padding: 0; /* no inner padding */
-  margin: clamp(3rem, 6vw, 7rem) auto 0.75rem; /* slightly reduced vertical spacing */
+  margin: clamp(0.4rem, 1vw, 0.9rem) auto 0.5rem; /* close to top without clipping */
 `;
 
 /* Decorative hero surface with gradient + subtle network grid */
 const HeroSurface = styled.div`
   position: relative;
-  padding: clamp(1.25rem, 4vw, 2.25rem) 1rem; /* slightly tighter to reduce height */
+  padding: 0.3rem 0.8rem 0.9rem; /* bring heading closer to top, keep some bottom padding */
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 28px rgba(0,0,0,0.06);
@@ -307,21 +380,23 @@ const revealLine = keyframes`
 const Underline = styled.div`
   height: 3px;
   width: 140px; /* final width matches animation */
-  margin: 0.6rem auto 0;
+  margin: 0.25rem auto 0; /* even closer to heading */
   border-radius: 3px;
   background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
-  animation: ${revealLine} 900ms ease forwards;
+  background-size: 200% 100%;
+  /* First reveal the line, then start the infinite wave shift */
+  animation: ${revealLine} 900ms ease forwards, ${waveShift} 1600ms linear infinite 900ms;
 `;
 
 /* Subtle icon row for context (STEM/Telecom/Tools) */
 const IconRow = styled.div`
   display: flex;
-  gap: 0.6rem; /* smaller spacing between icons */
+  gap: 0.55rem;
   justify-content: center;
   align-items: center;
-  font-size: clamp(1rem, 2vw, 1.2rem); /* slightly smaller icons */
-  opacity: 0.8;
-  margin-bottom: -0.15rem; /* subtle overlap toward the heading */
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  opacity: 0.85;
+  margin-bottom: -0.25rem; /* pull icons closer to heading */
 `;
 
 /* Floating decorative tool icon */
@@ -341,16 +416,13 @@ const FloatingIcon = styled.span`
 `;
 
 const HeroHeading = styled.h1`
-  font-size: clamp(2.75rem, 6vw, 4.75rem); /* much bigger */
+  font-size: clamp(2.4rem, 6vw, 4.25rem);
   color: var(--deep-purple);
-  margin: 0; /* no extra spacing inside */
-  letter-spacing: 0.04em; /* subtle tracking for readability */
+  margin: 0; /* no extra vertical space */
+  letter-spacing: 0.03em; /* slightly tighter */
+  line-height: 1.05; /* reduce height */
   text-align: center;
-  transition: text-shadow 200ms ease;
-
-  &:hover {
-    text-shadow: 0 6px 22px rgba(53, 36, 240, 0.25);
-  }
+  animation: ${slideInGlow} 720ms ease both;
 `;
 
 const HeroSubheading = styled.p`
@@ -526,7 +598,10 @@ const About = () => {
         <SectionBlock>
           <RevealOnScroll>
             <WhatWeDoBlock>
-              <SectionHeading>What we do</SectionHeading>
+              <WhatHeading>
+                <span className="solid">What</span> <span className="gradient">we do</span>
+              </WhatHeading>
+              <SignalUnderline aria-hidden="true" />
               <WhatWeDoGrid>
                 <FullBleed>
                   <WhatWeDoItem>

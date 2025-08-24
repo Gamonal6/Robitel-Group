@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const PageContainer = styled.div`
-  /* Extra top padding to clear fixed navbar */
-  padding: 7rem 2rem 4rem;
+  /* Offset to clear fixed navbar while keeping hero compact */
+  padding: 4.5rem 2rem 4rem;
 `;
 
 const ContentWrapper = styled.div`
@@ -19,6 +19,72 @@ const SectionTitle = styled.h1`
   margin: 0 0 0.5rem 0; /* slightly reduced bottom spacing */
   /* When linked via hash, prevent being hidden beneath navbar */
   scroll-margin-top: 6rem;
+`;
+
+/* === Hero title styling (aligned with About/Services) === */
+const HistoryHero = styled.section`
+  margin: clamp(0.4rem, 1vw, 0.9rem) auto 0.5rem; /* close to top without clipping */
+`;
+
+const HeroSurface = styled.div`
+  position: relative;
+  padding: 0.3rem 0.8rem 0.9rem; /* bring heading closer to top, keep some bottom padding */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  background-image:
+    linear-gradient(135deg, rgba(53,36,240,0.08), rgba(103,232,249,0.10)),
+    linear-gradient(to right, rgba(53,36,240,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(53,36,240,0.08) 1px, transparent 1px);
+  background-size: auto, 32px 32px, 32px 32px;
+  background-position: center;
+`;
+
+const IconRow = styled.div`
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  opacity: 0.8;
+  margin-bottom: -0.15rem;
+`;
+
+const Accent = styled.span`
+  background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+`;
+
+const slideInGlow = keyframes`
+  0% { opacity: 0; transform: translateY(8px); text-shadow: 0 0 0 rgba(53,36,240,0); }
+  100% { opacity: 1; transform: translateY(0); text-shadow: 0 0 12px rgba(53,36,240,0.18); }
+`;
+
+const HeroHeading = styled.h1`
+  font-size: clamp(2.4rem, 6vw, 4.25rem);
+  color: var(--deep-purple);
+  margin: 0; /* no extra vertical space */
+  letter-spacing: 0.03em; /* slightly tighter */
+  line-height: 1.05; /* reduce height */
+  text-align: center;
+  animation: ${slideInGlow} 720ms ease both;
+`;
+
+const waveShift = keyframes`
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+`;
+
+const Underline = styled.div`
+  height: 3px;
+  width: 140px;
+  margin: 0.25rem auto 0; /* even closer to heading */
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
+  background-size: 200% 100%;
+  animation: ${waveShift} 1600ms linear infinite;
 `;
 
 const SubTitle = styled.h2`
@@ -101,7 +167,15 @@ const History = () => {
     <PageContainer>
       <ContentWrapper>
         <RevealOnScroll>
-          <SectionTitle>Our History</SectionTitle>
+          <HistoryHero>
+            <HeroSurface>
+              <IconRow aria-hidden="true">🎓 📡 🔧</IconRow>
+              <HeroHeading>
+                Our <Accent>History</Accent>
+              </HeroHeading>
+              <Underline aria-hidden="true" />
+            </HeroSurface>
+          </HistoryHero>
         </RevealOnScroll>
 
         <RevealOnScroll delay={80}>

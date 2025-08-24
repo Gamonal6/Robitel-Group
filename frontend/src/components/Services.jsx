@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const ServicesContainer = styled.div`
-  padding: 4rem 2rem;
+  /* Offset for fixed navbar to standardize hero distance */
+  padding: 4.5rem 2rem 0;
 `;
 
 const ContentWrapper = styled.div`
@@ -97,6 +98,72 @@ const ServiceCard = styled.div`
   }
 `;
 
+/* === Hero title styling (aligned with About page) === */
+const ServicesHero = styled.section`
+  margin: clamp(0.4rem, 1vw, 0.9rem) auto 0.5rem; /* close to top without clipping */
+`;
+
+const HeroSurface = styled.div`
+  position: relative;
+  padding: clamp(0.4rem, 1.8vw, 1rem) 0.8rem; /* tighter to reduce hero height */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  background-image:
+    linear-gradient(135deg, rgba(53,36,240,0.08), rgba(103,232,249,0.10)),
+    linear-gradient(to right, rgba(53,36,240,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(53,36,240,0.08) 1px, transparent 1px);
+  background-size: auto, 32px 32px, 32px 32px;
+  background-position: center;
+`;
+
+const IconRow = styled.div`
+  display: flex;
+  gap: 0.55rem;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  opacity: 0.85;
+  margin-bottom: -0.25rem; /* pull icons closer to heading */
+`;
+
+const Accent = styled.span`
+  background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+`;
+
+const slideInGlow = keyframes`
+  0% { opacity: 0; transform: translateY(8px); text-shadow: 0 0 0 rgba(53,36,240,0); }
+  100% { opacity: 1; transform: translateY(0); text-shadow: 0 0 12px rgba(53,36,240,0.18); }
+`;
+
+const HeroHeading = styled.h1`
+  font-size: clamp(2.4rem, 6vw, 4.25rem);
+  color: var(--deep-purple);
+  margin: 0; /* no extra vertical space */
+  letter-spacing: 0.03em; /* slightly tighter */
+  line-height: 1.05; /* reduce height */
+  text-align: center;
+  animation: ${slideInGlow} 720ms ease both;
+`;
+
+const waveShift = keyframes`
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+`;
+
+const Underline = styled.div`
+  height: 3px;
+  width: 140px;
+  margin: 0.3rem auto 0; /* closer to heading */
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
+  background-size: 200% 100%;
+  animation: ${waveShift} 1600ms linear infinite;
+`;
+
 const ServiceTitle = styled.h3`
   font-size: clamp(1.5rem, 2.2vw, 1.75rem);
   margin: 0 0 0.5rem 0;
@@ -140,7 +207,15 @@ const Services = () => {
     <ServicesContainer>
       <ContentWrapper>
         <RevealOnScroll>
-          <SectionTitle>Our Services</SectionTitle>
+          <ServicesHero>
+            <HeroSurface>
+              <IconRow aria-hidden="true">🎓 📡 🔧</IconRow>
+              <HeroHeading>
+                Our <Accent>Services</Accent>
+              </HeroHeading>
+              <Underline aria-hidden="true" />
+            </HeroSurface>
+          </ServicesHero>
         </RevealOnScroll>
         <RevealOnScroll delay={80}>
           <IntroText>
