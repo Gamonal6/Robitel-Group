@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const AboutContainer = styled.div`
   padding: 0 2rem; /* hero sits flush to top */
@@ -272,16 +272,85 @@ const AboutHero = styled.section`
   border: none; /* remove border */
   border-radius: 0;
   padding: 0; /* no inner padding */
-  margin: clamp(5rem, 8vw, 10rem) auto 1rem; /* keep top gap, tighter below */
+  margin: clamp(3rem, 6vw, 7rem) auto 0.75rem; /* slightly reduced vertical spacing */
+`;
+
+/* Decorative hero surface with gradient + subtle network grid */
+const HeroSurface = styled.div`
+  position: relative;
+  padding: clamp(1.25rem, 4vw, 2.25rem) 1rem; /* slightly tighter to reduce height */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  background-image:
+    linear-gradient(135deg, rgba(53,36,240,0.08), rgba(103,232,249,0.10)),
+    linear-gradient(to right, rgba(53,36,240,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(53,36,240,0.08) 1px, transparent 1px);
+  background-size: auto, 32px 32px, 32px 32px;
+  background-position: center;
+`;
+
+/* Gradient accent for the word 'Us' */
+const Accent = styled.span`
+  background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+`;
+
+/* Animated underline that reveals left-to-right */
+const revealLine = keyframes`
+  from { width: 0; opacity: 0; }
+  to { width: 140px; opacity: 1; }
+`;
+
+const Underline = styled.div`
+  height: 3px;
+  width: 140px; /* final width matches animation */
+  margin: 0.6rem auto 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
+  animation: ${revealLine} 900ms ease forwards;
+`;
+
+/* Subtle icon row for context (STEM/Telecom/Tools) */
+const IconRow = styled.div`
+  display: flex;
+  gap: 0.6rem; /* smaller spacing between icons */
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(1rem, 2vw, 1.2rem); /* slightly smaller icons */
+  opacity: 0.8;
+  margin-bottom: -0.15rem; /* subtle overlap toward the heading */
+`;
+
+/* Floating decorative tool icon */
+const floatY = keyframes`
+  from { transform: translateY(0); }
+  to { transform: translateY(-8px); }
+`;
+
+const FloatingIcon = styled.span`
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  opacity: 0.35;
+  font-size: 1.25rem;
+  animation: ${floatY} 3.5s ease-in-out infinite alternate;
+  pointer-events: none;
 `;
 
 const HeroHeading = styled.h1`
   font-size: clamp(2.75rem, 6vw, 4.75rem); /* much bigger */
   color: var(--deep-purple);
   margin: 0; /* no extra spacing inside */
-  text-transform: uppercase; /* caps */
   letter-spacing: 0.04em; /* subtle tracking for readability */
   text-align: center;
+  transition: text-shadow 200ms ease;
+
+  &:hover {
+    text-shadow: 0 6px 22px rgba(53, 36, 240, 0.25);
+  }
 `;
 
 const HeroSubheading = styled.p`
@@ -296,7 +365,6 @@ const SectionHeading = styled.h2`
   font-size: clamp(2.75rem, 6vw, 4.75rem);
   color: var(--deep-purple);
   margin: 0 0 1rem 0;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   text-align: center;
 `;
@@ -421,7 +489,15 @@ const About = () => {
     <AboutContainer className="about-container">
       <RevealOnScroll>
         <AboutHero>
-          <HeroHeading>ABOUT US</HeroHeading>
+          <HeroSurface>
+            <IconRow aria-hidden="true">🎓 📡 🔧</IconRow>
+            <HeroHeading>
+              About <Accent>Us</Accent>
+            </HeroHeading>
+            <HeroSubheading>Where Education Meets Telecom Innovation</HeroSubheading>
+            <Underline aria-hidden="true" />
+            <FloatingIcon aria-hidden="true">🔧</FloatingIcon>
+          </HeroSurface>
         </AboutHero>
       </RevealOnScroll>
       <ContentWrapper className="about-wrapper">
@@ -450,7 +526,7 @@ const About = () => {
         <SectionBlock>
           <RevealOnScroll>
             <WhatWeDoBlock>
-              <SectionHeading>WHAT WE DO</SectionHeading>
+              <SectionHeading>What we do</SectionHeading>
               <WhatWeDoGrid>
                 <FullBleed>
                   <WhatWeDoItem>
