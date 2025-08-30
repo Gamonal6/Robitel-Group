@@ -732,7 +732,7 @@ const Services = () => {
 
           <RevealOnScroll delay={120}>
             <VisualCard tabIndex="0">
-              <VisualMedia src="/images/customer-satisfaction.png" alt="Technician capturing customer feedback on-site" loading="lazy" />
+              <VisualMedia src="/images/custumer-satisfaction.png" alt="Technician capturing customer feedback on-site" loading="lazy" />
               <FrostedContent $right>
                 <ServiceTitle>Customer Satisfaction Monitoring</ServiceTitle>
                 <CardTagline>Every Job, Measured. Every Service, Improved.</CardTagline>
@@ -747,7 +747,7 @@ const Services = () => {
 
           <RevealOnScroll delay={200}>
             <VisualCard tabIndex="0">
-              <VisualMedia src="/images/performance-insights.png" alt="Data dashboards and performance insights" loading="lazy" />
+              <VisualMedia src="/images/performance-insights.jpeg" alt="Data dashboards and performance insights" loading="lazy" />
               <FrostedContent>
                 <ServiceTitle>Data & Performance Insights</ServiceTitle>
                 <CardTagline>Turning Field Work Into Smart Decisions.</CardTagline>
