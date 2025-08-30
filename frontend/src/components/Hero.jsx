@@ -11,9 +11,9 @@ const HeroContainer = styled.div`
   height: 100vh;
   text-align: center;
   padding: 0 2rem;
-  /* Blend: deep purple gradient overlay over the hero image */
+  /* Blend: blue/teal gradient overlay over the hero image */
   background:
-    linear-gradient(rgba(53, 36, 240, 0.6), rgba(53, 36, 240, 0.6)),
+    linear-gradient(rgba(37, 99, 235, 0.72), rgba(6, 182, 212, 0.78)),
     url(${HeroBg}) no-repeat center center/cover;
   color: var(--primary-white);
 `;

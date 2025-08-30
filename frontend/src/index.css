@@ -1,15 +1,21 @@
 :root {
-  /* Palette 4 */
-  --bright-blue: #4EB4F2;
-  --vivid-green: #49EC30;
-  --deep-purple: #3524F0;
-  --teal: #41ECA2;
-  --aqua: #26C7CC;
+  /* Core Palette: Blue, Indigo, Teal/Cyan */
+  /* These map to values used throughout components */
+  --deep-purple: #3524F0; /* rgba(53,36,240) */
+  --teal: #14B8A6;       /* teal-500 (rgba base 20,184,166) */
+  --aqua: #06B6D4;       /* cyan-500 */
 
-  /* General */
+  /* Keep generics */
   --primary-white: #FFFFFF;
-  --text-color: #333; /* Charcoal/Dark Gray */
-  --primary-black: #000000;
+  --text-color: #1a1a1a; /* deep charcoal */
+  --primary-black: #111111;
+
+  /* Legacy/unused brand vars can remain without affecting theme */
+  --brand-red: #B91C1C;
+  --brand-red-dark: #7F1D1D;
+  --brand-beige: #F1E4D1;
+  --brand-beige-dark: #E6D5BE;
+  --brand-black: #111111;
 }
 
 body {
@@ -18,5 +24,3 @@ body {
   background-color: var(--primary-white);
   color: var(--text-color);
 }
-
-

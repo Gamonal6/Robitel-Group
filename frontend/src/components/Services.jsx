@@ -160,6 +160,83 @@ const ServiceCard = styled.article`
   }
 `;
 
+/* Visual card variant with background image and frosted overlay */
+const VisualCard = styled.article`
+  position: relative;
+  height: clamp(240px, 36vw, 320px);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  will-change: transform, box-shadow;
+  isolation: isolate; /* create own stacking context */
+
+  /* gradient border */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(135deg, #2563eb, #6366f1, #06b6d4);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* diagonal accent overlay */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(37,99,235,0.45) 0%, rgba(6,182,212,0.25) 40%, transparent 58%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &:hover { transform: translateY(-6px); box-shadow: 0 14px 32px rgba(0,0,0,0.14); }
+`;
+
+const VisualMedia = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transform: scale(1);
+  transition: transform 320ms ease;
+
+  ${VisualCard}:hover & { transform: scale(1.04); }
+`;
+
+const FrostedContent = styled.div`
+  position: absolute;
+  ${({ $right }) => ($right ? 'right: clamp(0.8rem, 2.5vw, 1.1rem);' : 'left: clamp(0.8rem, 2.5vw, 1.1rem);')}
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(560px, 62%);
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(0.9rem, 2.2vw, 1.2rem);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  color: #ffffff;
+  z-index: 2;
+
+  h3 { /* ensure readable title on frosted panel */
+    margin: 0 0 0.35rem 0;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: #ffffff;
+  }
+
+  p { color: rgba(255,255,255,0.92); margin: 0 0 0.45rem 0; }
+`;
+
 /* Two-column internal layout */
 const CardLayout = styled.div`
   display: grid;
@@ -234,7 +311,7 @@ const IconRow = styled.div`
 `;
 
 const Accent = styled.span`
-  background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -410,7 +487,7 @@ const RoadmapTitle = styled.h2`
   text-align: center;
   font-size: clamp(1.8rem, 4.5vw, 2.4rem);
   margin: 0 0 1rem 0;
-  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -421,92 +498,85 @@ const Timeline = styled.div`
   padding: 1rem 0 0.5rem;
 `;
 
-/* Glowing fiber cable track */
+/* Glowing fiber cable track: small screens only (vertical) */
 const TimelineTrack = styled.div`
-  position: absolute;
-  top: 54px; /* aligns with icon circles */
-  left: 0;
-  right: 0;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(to right, #06b6d4, #6366f1, #2563eb);
-  background-size: 100% 100%;
-  box-shadow: 0 0 12px rgba(56,189,248,0.35);
-  overflow: hidden; /* clip shimmer */
-
-  /* Left-to-right shimmer overlay */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -30%;
-    height: 100%;
-    width: 30%;
-    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%);
-    filter: blur(0.5px);
-    opacity: 0.85;
-    animation: ${keyframes`
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(430%); }
-    `} 3800ms linear infinite;
-  }
-
-  /* Vertical on small screens */
+  display: none;
   @media (max-width: 799px) {
+    display: block;
+    position: absolute;
     left: 28px;
     width: 3px;
     height: calc(100% - 16px);
     top: 16px;
     right: auto;
-    /* Hide shimmer when vertical to avoid odd direction */
-    &::before { display: none; }
+    background: linear-gradient(180deg, #2563eb, #06b6d4);
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.30);
+    border-radius: 999px;
   }
 `;
 
 const StepList = styled.ol`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
+list-style: none;
+padding: 0;
+margin: 0;
+display: grid;
+grid-template-columns: 1fr;
+gap: 1.2rem;
 
-  @media (min-width: 800px) {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    align-items: flex-start;
-    gap: 0.9rem;
+@media (min-width: 800px) {
+display: grid;
+grid-template-columns: repeat(6, 1fr);
+align-items: flex-start;
+gap: 0.9rem;
+}
+
+/* Desktop: single horizontal connector line behind icons */
+@media (min-width: 800px) {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 28px; /* aligns with IconCircle center (56px tall) */
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--deep-purple), var(--aqua));
+    box-shadow: 0 0 6px rgba(56,189,248,0.25);
+    border-radius: 999px;
+    z-index: 0;
   }
+}
 `;
 
 const StepItem = styled.li`
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
+position: relative;
+display: flex;
+align-items: flex-start;
+gap: 0.75rem;
 
-  @media (min-width: 800px) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+@media (min-width: 800px) {
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+
+/* no per-item connectors; line is drawn by StepList::before */
 `;
 
 const IconCircle = styled.span`
-  flex: 0 0 auto;
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  font-size: 1.4rem;
-  background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.18), rgba(6,182,212,0.18)), linear-gradient(135deg, #2563eb, #06b6d4);
-  color: white;
-  box-shadow: 0 10px 22px rgba(0,0,0,0.08), 0 0 0 4px rgba(56,189,248,0.18) inset;
+flex: 0 0 auto;
+width: 56px;
+height: 56px;
+border-radius: 999px;
+display: grid;
+place-items: center;
+font-size: 1.4rem;
+background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.18), rgba(6,182,212,0.18)), linear-gradient(135deg, #2563eb, #06b6d4);
+box-shadow: 0 10px 22px rgba(0,0,0,0.08), 0 0 0 4px rgba(56,189,248,0.18) inset;
 `;
 
 const StepText = styled.div`
-  max-width: 220px;
+max-width: 220px;
 `;
 
 const StepLabel = styled.div`
@@ -543,7 +613,7 @@ const PromiseBlock = styled.p`
 const CardTagline = styled.div`
   font-size: 1.05rem; /* slightly larger than body */
   font-weight: 600;
-  color: rgba(0,0,0,0.82); /* dark slate */
+  color: rgba(60, 2, 2, 0.82); /* dark slate */
   margin: 0 0 0.5rem;
 `;
 
@@ -645,59 +715,49 @@ const Services = () => {
 
         <ServicesGrid>
           <RevealOnScroll>
-            <ServiceCard tabIndex="0">
-              <CardLayout>
-                <LeftCol>
-                  <ServiceTitle>Skilled Technicians</ServiceTitle>
-                </LeftCol>
-                <RightCol>
-                  <CardTagline>Certified Technicians, Ready When You Are.</CardTagline>
-                  <ServiceParagraph>
-                    We turn university STEM students into certified, customer‑ready technicians. Through training,
-                    certification, and field shadowing, they gain the technical and customer service skills needed to
-                    perform from day one.
-                  </ServiceParagraph>
-                  <ResultLine>➡️ The result: fast, reliable staffing for telecom companies without hiring delays or training costs.</ResultLine>
-                </RightCol>
-              </CardLayout>
-            </ServiceCard>
+            <VisualCard tabIndex="0">
+              <VisualMedia src="/images/skilled-technicians.png" alt="Skilled technicians working in the field" loading="lazy" />
+              <FrostedContent>
+                <ServiceTitle>Skilled Technicians</ServiceTitle>
+                <CardTagline>Certified Technicians, Ready When You Are.</CardTagline>
+                <ServiceParagraph>
+                  We turn university STEM students into certified, customer‑ready technicians. Through training,
+                  certification, and field shadowing, they gain the technical and customer service skills needed to
+                  perform from day one.
+                </ServiceParagraph>
+                <ResultLine>➡️ The result: fast, reliable staffing for telecom companies without hiring delays or training costs.</ResultLine>
+              </FrostedContent>
+            </VisualCard>
           </RevealOnScroll>
 
           <RevealOnScroll delay={120}>
-            <ServiceCard tabIndex="0">
-              <CardLayout>
-                <LeftCol>
-                  <ServiceTitle>Customer Satisfaction Monitoring</ServiceTitle>
-                </LeftCol>
-                <RightCol>
-                  <CardTagline>Every Job, Measured. Every Service, Improved.</CardTagline>
-                  <ServiceParagraph>
-                    Once in the field, our technicians don’t just complete jobs — they capture real‑time customer
-                    feedback. This feedback loop allows telecom companies to spot trends, fix issues quickly, and
-                    continually raise service quality.
-                  </ServiceParagraph>
-                  <ResultLine>➡️ The result: higher customer satisfaction and fewer repeat visits.</ResultLine>
-                </RightCol>
-              </CardLayout>
-            </ServiceCard>
+            <VisualCard tabIndex="0">
+              <VisualMedia src="/images/customer-satisfaction.png" alt="Technician capturing customer feedback on-site" loading="lazy" />
+              <FrostedContent $right>
+                <ServiceTitle>Customer Satisfaction Monitoring</ServiceTitle>
+                <CardTagline>Every Job, Measured. Every Service, Improved.</CardTagline>
+                <ServiceParagraph>
+                  Once in the field, our technicians don’t just complete jobs — they capture real‑time customer feedback.
+                  This feedback loop allows telecom companies to spot trends, fix issues quickly, and continually raise service quality.
+                </ServiceParagraph>
+                <ResultLine>➡️ The result: higher customer satisfaction and fewer repeat visits.</ResultLine>
+              </FrostedContent>
+            </VisualCard>
           </RevealOnScroll>
 
           <RevealOnScroll delay={200}>
-            <ServiceCard tabIndex="0">
-              <CardLayout>
-                <LeftCol>
-                  <ServiceTitle>Data & Performance Insights</ServiceTitle>
-                </LeftCol>
-                <RightCol>
-                  <CardTagline>Turning Field Work Into Smart Decisions.</CardTagline>
-                  <ServiceParagraph>
-                    Each technician’s work generates valuable performance data. We help telecom companies use this data to
-                    track KPIs, identify bottlenecks, and optimize operations.
-                  </ServiceParagraph>
-                  <ResultLine>➡️ The result: lower costs, greater efficiency, and continuous improvement.</ResultLine>
-                </RightCol>
-              </CardLayout>
-            </ServiceCard>
+            <VisualCard tabIndex="0">
+              <VisualMedia src="/images/performance-insights.png" alt="Data dashboards and performance insights" loading="lazy" />
+              <FrostedContent>
+                <ServiceTitle>Data & Performance Insights</ServiceTitle>
+                <CardTagline>Turning Field Work Into Smart Decisions.</CardTagline>
+                <ServiceParagraph>
+                  Each technician’s work generates valuable performance data. We help telecom companies use this data to
+                  track KPIs, identify bottlenecks, and optimize operations.
+                </ServiceParagraph>
+                <ResultLine>➡️ The result: lower costs, greater efficiency, and continuous improvement.</ResultLine>
+              </FrostedContent>
+            </VisualCard>
           </RevealOnScroll>
         </ServicesGrid>
 

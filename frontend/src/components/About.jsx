@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 const AboutContainer = styled.div`
@@ -92,6 +93,37 @@ const SignalUnderline = styled.div`
   background-size: 200% 100%;
   animation: ${waveShift} 1600ms linear infinite;
   box-shadow: 0 0 10px rgba(103,232,249,0.35);
+`;
+
+/* Tagline under What We Do heading */
+const WhatTagline = styled.p`
+  position: relative;
+  z-index: 1;
+  margin: -0.15rem auto 0.6rem;
+  text-align: center;
+  color: rgba(0,0,0,0.72);
+  max-width: 820px;
+  line-height: 1.6;
+  font-size: clamp(1rem, 2.2vw, 1.1rem);
+`;
+
+const WhatCTA = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0.2rem auto 0.8rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  text-decoration: none;
+  background: rgba(53,36,240,0.06);
+  color: var(--deep-purple);
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+  width: max-content;
+
+  &:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); background: rgba(53,36,240,0.08); }
 `;
 
 /* Full-bleed wrapper to make a child span entire viewport width */
@@ -214,7 +246,7 @@ const BannerBackdrop = styled.div`
 
 const WhatWeDoCard = styled.div`
   background: var(--primary-white);
-  border: 1px solid rgba(53, 36, 240, 0.25);
+  border: 1px solid rgba(53, 36, 240, 0.15);
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 4px 14px rgba(0,0,0,0.04);
@@ -505,7 +537,7 @@ const StatsGrid = styled.div`
 
 const StatCard = styled.div`
   background: var(--primary-white);
-  border: 1px solid rgba(103, 232, 249, 0.9);
+  border: 1px solid rgba(241, 228, 209, 0.9);
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
@@ -573,6 +605,96 @@ const ValueCard = styled.div`
   }
 `;
 
+/* Why We're Different: icon + headline vertical card */
+const WhyCard = styled.div`
+  background: var(--primary-white);
+  border-radius: 14px;
+  padding: 1rem 0.9rem;
+  text-align: center;
+  border: 1px solid rgba(241, 228, 209, 0.95);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  will-change: transform, box-shadow;
+
+  &:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); border-color: var(--teal); }
+  &:focus-within { outline: 3px solid rgba(20, 184, 166, 0.35); outline-offset: 2px; }
+`;
+
+const WhyIcon = styled.span`
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  margin: 0 auto 0.45rem;
+  background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.18), rgba(6,182,212,0.18)), linear-gradient(135deg, #2563eb, #06b6d4);
+  color: #fff;
+  font-size: 1.25rem;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08), 0 0 0 4px rgba(56,189,248,0.18) inset;
+`;
+
+const WhyHeadline = styled.div`
+  font-weight: 800;
+  color: var(--deep-purple);
+  margin-bottom: 0.25rem;
+`;
+
+const WhyText = styled.p`
+  margin: 0;
+  color: rgba(0,0,0,0.75);
+  line-height: 1.6;
+`;
+
+/* Our Commitment Banner (full-bleed gradient) */
+const CommitmentBanner = styled.section`
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  color: #ffffff;
+`;
+
+const CommitmentInner = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4.5vw, 3rem) clamp(1rem, 3vw, 2rem);
+  text-align: center;
+`;
+
+const CommitmentTitle = styled.h2`
+  margin: 0 0 0.6rem 0;
+  font-size: clamp(1.9rem, 5vw, 2.5rem);
+  color: #ffffff;
+`;
+
+const CommitmentText = styled.p`
+  margin: 0.1rem auto 1rem;
+  max-width: 860px;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.7;
+  font-size: clamp(1rem, 2.2vw, 1.1rem);
+`;
+
+const CommitmentCTA = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.25rem;
+  padding: 0.7rem 1.1rem;
+  background: #ffffff;
+  color: #0ea5b7;
+  font-weight: 700;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  &:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
+`;
+
  
 
 
@@ -623,6 +745,12 @@ const About = () => {
                 <span className="solid">What</span> <span className="gradient">we do</span>
               </WhatHeading>
               <SignalUnderline aria-hidden="true" />
+              <WhatTagline>
+                We develop certified telecom talent and simple tools that turn every job into measurable quality and insights.
+              </WhatTagline>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <WhatCTA to="/services" aria-label="Explore our services">Explore our Services →</WhatCTA>
+              </div>
               <WhatWeDoGrid>
                 <FullBleed>
                   <WhatWeDoItem>
@@ -669,34 +797,25 @@ const About = () => {
         <SectionBlock>
           <ValuesGrid>
             <RevealOnScroll>
-              <ValueCard>
-                <div>
-                  <FeatureTitle>Why We’re Different</FeatureTitle>
-                  <FeatureText>
-                    Talent development paired with practical solutions for measurable results and quality service.
-                  </FeatureText>
-                </div>
-              </ValueCard>
+              <WhyCard>
+                <WhyIcon aria-hidden="true">🧭</WhyIcon>
+                <WhyHeadline>Purpose-Built Talent</WhyHeadline>
+                <WhyText>We recruit STEM students and coach them through certification to deliver job-ready technicians.</WhyText>
+              </WhyCard>
             </RevealOnScroll>
             <RevealOnScroll delay={100}>
-              <ValueCard>
-                <div>
-                  <FeatureTitle>Quality & Reliability</FeatureTitle>
-                  <FeatureText>
-                    Consistent standards and verified skill paths that keep teams aligned and accountable.
-                  </FeatureText>
-                </div>
-              </ValueCard>
+              <WhyCard>
+                <WhyIcon aria-hidden="true">🛡</WhyIcon>
+                <WhyHeadline>Quality You Can Measure</WhyHeadline>
+                <WhyText>Every service captures feedback so you can see trends, fix issues, and raise satisfaction.</WhyText>
+              </WhyCard>
             </RevealOnScroll>
             <RevealOnScroll delay={200}>
-              <ValueCard>
-                <div>
-                  <FeatureTitle>Actionable Insights</FeatureTitle>
-                  <FeatureText>
-                    Clear reporting and feedback loops make service performance visible so leaders can take timely action.
-                  </FeatureText>
-                </div>
-              </ValueCard>
+              <WhyCard>
+                <WhyIcon aria-hidden="true">📊</WhyIcon>
+                <WhyHeadline>Operational Insight</WhyHeadline>
+                <WhyText>Turn field data into KPIs you can act on to reduce costs and improve performance.</WhyText>
+              </WhyCard>
             </RevealOnScroll>
           </ValuesGrid>
         </SectionBlock>
@@ -711,6 +830,20 @@ const About = () => {
             </Card>
           </RevealOnScroll>
         </SectionBlock>
+
+        {/* Bold commitment banner */}
+        <RevealOnScroll delay={80}>
+          <CommitmentBanner>
+            <CommitmentInner>
+              <CommitmentTitle>Bottom Line</CommitmentTitle>
+              <CommitmentText>
+                We build a reliable pipeline of certified technicians and the tools to measure every service, so your
+                customers get exceptional outcomes—every time.
+              </CommitmentText>
+              <CommitmentCTA to="/schedule">Schedule a Meeting</CommitmentCTA>
+            </CommitmentInner>
+          </CommitmentBanner>
+        </RevealOnScroll>
       </ContentWrapper>
     </AboutContainer>
   );

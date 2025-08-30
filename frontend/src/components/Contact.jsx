@@ -84,7 +84,7 @@ const Field = styled.div`
       position: absolute;
       right: 8px;
       top: 6px;
-      color: #e11d48; /* red */
+      color: var(--teal); /* themed accent */
       font-weight: 700;
       pointer-events: none;
     }
