@@ -459,29 +459,28 @@ const History = () => {
 
   const timelineData = [
     {
-      year: "1719",
-      title: "Robinson Crusoe Published",
-      description: "Daniel Defoe's masterpiece introduces the world to themes of resilience, ingenuity, and survival against all odds — values that would later inspire our company's foundation."
+      title: "Inspiration",
+      description: "The tale of Robinson Crusoe is one of resilience, resourcefulness, and determination. His ability to adapt and thrive with limited tools inspired the spirit behind Robitel Group."
     },
     {
-      year: "2020",
-      title: "Robitel Group Founded",
-      description: "Drawing inspiration from Robinson Crusoe's resourcefulness, we established Robitel Group to bridge the gap between talented individuals and the telecommunications industry."
+      title: "Our Name",
+      description: "Robitel = Robinson + Telecommunication. Our name embodies our origins: combining the ingenuity of Crusoe with our mission to innovate and strengthen the telecommunications industry."
     },
     {
-      year: "2021",
-      title: "University Partnerships",
-      description: "Formed strategic partnerships with leading universities to create comprehensive training and certification programs for emerging telecommunications professionals."
+      title: "From Vision to Action",
+      description: "Robitel Group was founded with a clear goal — to bridge the gap between talented STEM students and the telecommunications companies that need skilled professionals."
     },
     {
-      year: "2022",
-      title: "Dashboard Solutions Launch",
-      description: "Launched our first KPI consulting and dashboard services, helping telecom companies visualize and optimize their operations with data-driven insights."
+      title: "Building with Purpose",
+      description: "Through partnerships with universities and campus organizations, we train and certify students, transforming potential into workforce-ready talent prepared to deliver real value."
     },
     {
-      year: "2023",
-      title: "Network Expansion",
-      description: "Expanded our network of certified technicians and consulting services, establishing Robitel Group as a trusted partner in telecommunications excellence."
+      title: "Growing Through Innovation",
+      description: "Just as Crusoe built his future step by step, we built ours by combining technical expertise with creativity. Today, we help companies make smarter decisions with dashboards, KPIs, and customer satisfaction insights."
+    },
+    {
+      title: "Looking Ahead",
+      description: "The spirit of Robinson Crusoe continues to guide us: embrace challenges, innovate with purpose, and build a stronger future for the telecommunications industry."
     }
   ];
 
@@ -533,11 +532,11 @@ const History = () => {
           
           <Timeline>
             {timelineData.map((item, index) => (
-              <RevealOnScroll key={item.year} delay={index * 200}>
+              <RevealOnScroll key={item.title} delay={index * 200}>
                 <TimelineItem>
                   <TimelineIcon></TimelineIcon>
                   <TimelineContent>
-                    <TimelineYear>{item.year} — {item.title}</TimelineYear>
+                    <TimelineYear>{item.title}</TimelineYear>
                     <TimelineDescription>{item.description}</TimelineDescription>
                   </TimelineContent>
                 </TimelineItem>
