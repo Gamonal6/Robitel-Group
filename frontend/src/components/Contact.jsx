@@ -303,16 +303,6 @@ const Contact = () => {
             <PhoneIcon />
             <span>(555) 123-4567</span>
           </InfoBlock>
-          <InfoBlock>
-            <MapPinIcon />
-            <span>123 Innovation Drive, Tech City, USA</span>
-          </InfoBlock>
-          <SocialLinks>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <LinkedInIcon />
-            </a>
-            {/* Add other social icons here */}
-          </SocialLinks>
         </InfoContainer>
       </ContactWrapper>
     </ContactPageContainer>
