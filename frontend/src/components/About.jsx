@@ -238,12 +238,10 @@ const BannerBackdrop = styled.div`
     pointer-events: none;
     background: ${({ $imageLeft }) =>
       $imageLeft
-        ? 'linear-gradient(to left, rgb(88, 101, 242) 0%, rgb(88, 101, 242) 46%, rgba(88, 101, 242, 0.44) 52%, rgba(88, 101, 242, 0.32) 58%, rgba(88, 101, 242, 0.22) 66%, rgba(88, 101, 242, 0.12) 74%, rgba(88, 101, 242, 0.06) 84%, rgba(88, 101, 242, 0) 92%)'
-        : 'linear-gradient(to right, rgb(88, 101, 242) 0%, rgb(88, 101, 242) 46%, rgba(88, 101, 242, 0.44) 52%, rgba(88, 101, 242, 0.32) 58%, rgba(88, 101, 242, 0.22) 66%, rgba(88, 101, 242, 0.12) 74%, rgba(88, 101, 242, 0.06) 84%, rgba(88, 101, 242, 0) 92%)'};
+        ? 'linear-gradient(to left, var(--deep-purple) 0%, var(--deep-purple) 46%, rgba(var(--deep-purple-rgb), 0.44) 52%, rgba(var(--deep-purple-rgb), 0.32) 58%, rgba(var(--deep-purple-rgb), 0.22) 66%, rgba(var(--deep-purple-rgb), 0.12) 74%, rgba(var(--deep-purple-rgb), 0.06) 84%, rgba(var(--deep-purple-rgb), 0) 92%)'
+        : 'linear-gradient(to right, var(--deep-purple) 0%, var(--deep-purple) 46%, rgba(var(--deep-purple-rgb), 0.44) 52%, rgba(var(--deep-purple-rgb), 0.32) 58%, rgba(var(--deep-purple-rgb), 0.22) 66%, rgba(var(--deep-purple-rgb), 0.12) 74%, rgba(var(--deep-purple-rgb), 0.06) 84%, rgba(var(--deep-purple-rgb), 0) 92%)'};
   }
 `;
-
-/* remove big banner wrappers (reverted) */
 
 const WhatWeDoCard = styled.div`
   background: var(--primary-white);
@@ -377,13 +375,39 @@ const Card = styled.div`
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
   will-change: transform, box-shadow;
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--deep-purple) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    transform: scale(1.05) translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     border-color: var(--teal);
+    
+    &::before {
+      opacity: 1;
+    }
+    
+    * {
+      color: white !important;
+      z-index: 2;
+      position: relative;
+    }
   }
 
   &:focus-within {
@@ -608,7 +632,7 @@ const ValueCard = styled.div`
   }
 `;
 
-/* Why We're Different: icon + headline vertical card */
+/* Why We're Different: icon + headline vertical card with home page effects */
 const WhyCard = styled.div`
   background: var(--primary-white);
   border-radius: 14px;
@@ -616,10 +640,40 @@ const WhyCard = styled.div`
   text-align: center;
   border: 1px solid rgba(241, 228, 209, 0.95);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
   will-change: transform, box-shadow;
 
-  &:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08); border-color: var(--teal); }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--bright-blue) 0%, var(--deep-purple) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+
+  &:hover { 
+    transform: scale(1.05) translateY(-8px); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); 
+    border-color: var(--teal);
+    
+    &::before {
+      opacity: 1;
+    }
+    
+    * {
+      color: white !important;
+      z-index: 2;
+      position: relative;
+    }
+  }
   &:focus-within { outline: 3px solid rgba(13, 202, 240, 0.35); outline-offset: 2px; }
 `;
 
@@ -634,12 +688,28 @@ const WhyIcon = styled.span`
   color: var(--primary-white);
   font-size: 1.25rem;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08), 0 0 0 4px rgba(13, 202, 240, 0.18) inset;
+  transition: all 0.3s ease;
+  z-index: 2;
+  position: relative;
+  
+  ${WhyCard}:hover & {
+    animation: iconBounce 0.6s ease;
+    transform: scale(1.1);
+  }
+  
+  @keyframes iconBounce {
+    0%, 100% { transform: scale(1.1) translateY(0); }
+    50% { transform: scale(1.2) translateY(-5px); }
+  }
 `;
 
 const WhyHeadline = styled.div`
   font-weight: 800;
   color: var(--deep-purple);
   margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+  z-index: 2;
+  position: relative;
 `;
 
 const WhyText = styled.p`
@@ -647,6 +717,9 @@ const WhyText = styled.p`
   color: var(--text-color);
   opacity: 0.75;
   line-height: 1.6;
+  transition: color 0.3s ease;
+  z-index: 2;
+  position: relative;
 `;
 
 /* Our Commitment Banner (full-bleed gradient) */
