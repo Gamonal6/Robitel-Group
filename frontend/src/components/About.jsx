@@ -238,12 +238,10 @@ const BannerBackdrop = styled.div`
     pointer-events: none;
     background: ${({ $imageLeft }) =>
       $imageLeft
-        ? 'linear-gradient(to left, rgb(88, 101, 242) 0%, rgb(88, 101, 242) 46%, rgba(88, 101, 242, 0.44) 52%, rgba(88, 101, 242, 0.32) 58%, rgba(88, 101, 242, 0.22) 66%, rgba(88, 101, 242, 0.12) 74%, rgba(88, 101, 242, 0.06) 84%, rgba(88, 101, 242, 0) 92%)'
-        : 'linear-gradient(to right, rgb(88, 101, 242) 0%, rgb(88, 101, 242) 46%, rgba(88, 101, 242, 0.44) 52%, rgba(88, 101, 242, 0.32) 58%, rgba(88, 101, 242, 0.22) 66%, rgba(88, 101, 242, 0.12) 74%, rgba(88, 101, 242, 0.06) 84%, rgba(88, 101, 242, 0) 92%)'};
+        ? 'linear-gradient(to left, var(--deep-purple) 0%, var(--deep-purple) 46%, rgba(var(--deep-purple-rgb), 0.44) 52%, rgba(var(--deep-purple-rgb), 0.32) 58%, rgba(var(--deep-purple-rgb), 0.22) 66%, rgba(var(--deep-purple-rgb), 0.12) 74%, rgba(var(--deep-purple-rgb), 0.06) 84%, rgba(var(--deep-purple-rgb), 0) 92%)'
+        : 'linear-gradient(to right, var(--deep-purple) 0%, var(--deep-purple) 46%, rgba(var(--deep-purple-rgb), 0.44) 52%, rgba(var(--deep-purple-rgb), 0.32) 58%, rgba(var(--deep-purple-rgb), 0.22) 66%, rgba(var(--deep-purple-rgb), 0.12) 74%, rgba(var(--deep-purple-rgb), 0.06) 84%, rgba(var(--deep-purple-rgb), 0) 92%)'};
   }
 `;
-
-/* remove big banner wrappers (reverted) */
 
 const WhatWeDoCard = styled.div`
   background: var(--primary-white);
