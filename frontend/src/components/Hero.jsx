@@ -13,7 +13,7 @@ const HeroContainer = styled.div`
   padding: 0 2rem;
   /* Blend: blue/teal gradient overlay over the hero image */
   background:
-    linear-gradient(rgba(37, 99, 235, 0.72), rgba(6, 182, 212, 0.78)),
+    linear-gradient(rgba(var(--bright-blue-rgb), 0.72), rgba(var(--aqua-rgb), 0.78)),
     url(${HeroBg}) no-repeat center center/cover;
   color: var(--primary-white);
 `;
@@ -45,7 +45,7 @@ const CTAButton = styled(Link)`
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(var(--primary-white-rgb), 0.12);
     border-color: var(--aqua);
   }
 `;

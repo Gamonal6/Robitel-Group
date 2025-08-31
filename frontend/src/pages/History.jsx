@@ -17,11 +17,11 @@ const HeroSection = styled.section`
   justify-content: center;
   background: linear-gradient(
     135deg,
-    #1e3a8a 0%,
-    #3b82f6 25%,
-    #06b6d4 50%,
-    #10b981 75%,
-    #f59e0b 100%
+    var(--deep-purple) 0%,
+    var(--bright-blue) 25%,
+    var(--teal) 50%,
+    var(--vibrant-green) 75%,
+    var(--amber) 100%
   );
   background-size: 400% 400%;
   animation: gradientShift 8s ease-in-out infinite;
@@ -34,7 +34,7 @@ const HeroSection = styled.section`
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="island" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%23065f46;stop-opacity:0.8"/><stop offset="50%" style="stop-color:%23047857;stop-opacity:0.6"/><stop offset="100%" style="stop-color:%23059669;stop-opacity:0.4"/></linearGradient></defs><path d="M0,400 Q200,350 400,380 T800,360 Q1000,340 1200,380 L1200,600 L0,600 Z" fill="url(%23island)"/><circle cx="150" cy="200" r="8" fill="%23f59e0b" opacity="0.8"/><rect x="300" y="150" width="4" height="80" fill="%23374151" opacity="0.7"/><rect x="500" y="120" width="6" height="110" fill="%23374151" opacity="0.8"/><rect x="700" y="100" width="5" height="130" fill="%23374151" opacity="0.9"/><rect x="900" y="80" width="8" height="150" fill="%23374151"/></svg>') center/cover no-repeat;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="island" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:rgb(6, 95, 70);stop-opacity:0.8"/><stop offset="50%" style="stop-color:rgb(4, 120, 87);stop-opacity:0.6"/><stop offset="100%" style="stop-color:rgb(5, 150, 105);stop-opacity:0.4"/></linearGradient></defs><path d="M0,400 Q200,350 400,380 T800,360 Q1000,340 1200,380 L1200,600 L0,600 Z" fill="url(%23island)"/><circle cx="150" cy="200" r="8" fill="rgb(245, 158, 11)" opacity="0.8"/><rect x="300" y="150" width="4" height="80" fill="rgb(55, 65, 81)" opacity="0.7"/><rect x="500" y="120" width="6" height="110" fill="rgb(55, 65, 81)" opacity="0.8"/><rect x="700" y="100" width="5" height="130" fill="rgb(55, 65, 81)" opacity="0.9"/><rect x="900" y="80" width="8" height="150" fill="rgb(55, 65, 81)"/></svg>') center/cover no-repeat;
     opacity: 0.3;
     animation: islandTransform 6s ease-in-out infinite alternate;
   }
@@ -46,7 +46,7 @@ const HeroSection = styled.section`
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.2) 100%);
+    background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.2) 100%);
   }
 `;
 
@@ -64,7 +64,7 @@ const HeroContent = styled.div`
   text-align: center;
   z-index: 10;
   position: relative;
-  color: white;
+  color: var(--primary-white);
 `;
 
 const fadeInUp = keyframes`
@@ -76,7 +76,7 @@ const HeroTitle = styled.h1`
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;
   margin: 0 0 1rem 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   animation: ${fadeInUp} 1s ease-out;
 `;
 
@@ -84,14 +84,14 @@ const HeroSubtitle = styled.p`
   font-size: clamp(1.2rem, 3vw, 2rem);
   margin: 0;
   opacity: 0.9;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   animation: ${fadeInUp} 1s ease-out 0.3s both;
 `;
 
 // Name Reveal Section
 const NameRevealSection = styled.section`
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, var(--light-gray) 0%, var(--light-gray-2) 100%);
   text-align: center;
 `;
 
@@ -117,52 +117,52 @@ const typing = keyframes`
 const NamePart = styled.div`
   font-size: clamp(1.5rem, 4vw, 3rem);
   font-weight: 600;
-  color: #1e40af;
+  color: var(--deep-purple);
   position: relative;
   overflow: hidden;
   white-space: nowrap;
   
   &.typing {
     width: 0;
-    animation: ${typing} 2s steps(20) forwards;
-    border-right: 3px solid #1e40af;
+    animation: ${typing} 1s steps(20) forwards;
+    border-right: 3px solid var(--deep-purple);
   }
 
   &.robinson { animation-delay: 0.5s; }
-  &.telecom { animation-delay: 2.5s; }
+  &.telecom { animation-delay: 1.7s; }
   &.robitel { 
-    animation-delay: 4.5s;
-    color: #059669;
+    animation-delay: 2.9s;
+    color: var(--vibrant-green);
     font-weight: 700;
   }
 `;
 
 const PlusSign = styled.div`
   font-size: clamp(2rem, 5vw, 4rem);
-  color: #6b7280;
+  color: var(--medium-gray);
   opacity: 0;
-  animation: ${fadeInUp} 0.5s ease-out 2s both;
+  animation: ${fadeInUp} 0.5s ease-out 1.5s both;
 `;
 
 const EqualsSign = styled.div`
   font-size: clamp(2rem, 5vw, 4rem);
-  color: #6b7280;
+  color: var(--medium-gray);
   opacity: 0;
-  animation: ${fadeInUp} 0.5s ease-out 4s both;
+  animation: ${fadeInUp} 0.5s ease-out 2.7s both;
 `;
 
 const Tagline = styled.p`
   font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: #374151;
+  color: var(--text-color);
   margin-top: 2rem;
   opacity: 0;
-  animation: ${fadeInUp} 0.8s ease-out 5.5s both;
+  animation: ${fadeInUp} 0.8s ease-out 3.9s both;
 `;
 
 // Timeline Section
 const TimelineSection = styled.section`
   padding: 6rem 2rem;
-  background: white;
+  background: var(--primary-white);
 `;
 
 const TimelineContainer = styled.div`
@@ -173,7 +173,7 @@ const TimelineContainer = styled.div`
 const TimelineTitle = styled.h2`
   font-size: clamp(2.5rem, 5vw, 4rem);
   text-align: center;
-  color: #1e40af;
+  color: var(--deep-purple);
   margin-bottom: 4rem;
 `;
 
@@ -187,7 +187,7 @@ const Timeline = styled.div`
     top: 0;
     bottom: 0;
     width: 4px;
-    background: linear-gradient(to bottom, #1e40af, #059669);
+    background: linear-gradient(to bottom, var(--deep-purple), var(--vibrant-green));
     transform: translateX(-50%);
     
     @media (max-width: 768px) {
@@ -219,17 +219,17 @@ const TimelineItem = styled.div`
 const TimelineContent = styled.div`
   flex: 1;
   padding: 2rem;
-  background: white;
+  background: var(--primary-white);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   margin: 0 2rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--light-gray-2);
   transition: all 0.3s ease;
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    border-color: #1e40af;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--deep-purple);
   }
   
   @media (max-width: 768px) {
@@ -238,35 +238,18 @@ const TimelineContent = styled.div`
 `;
 
 const TimelineIcon = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  background: transparent;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: white;
-  z-index: 10;
-  
-  @media (max-width: 768px) {
-    left: 2rem;
-    transform: translateX(-50%);
-  }
+  display: none;
 `;
 
 const TimelineYear = styled.h3`
   font-size: 1.5rem;
-  color: #1e40af;
+  color: var(--deep-purple);
   margin: 0 0 1rem 0;
   font-weight: 700;
 `;
 
 const TimelineDescription = styled.p`
-  color: #374151;
+  color: var(--text-color);
   line-height: 1.6;
   margin: 0;
 `;
@@ -291,13 +274,13 @@ const SplitPane = styled.div`
   position: relative;
   
   &.crusoe {
-    background: linear-gradient(135deg, #0f766e 0%, #059669 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--teal-dark) 0%, var(--vibrant-green) 100%);
+    color: var(--primary-white);
   }
   
   &.robitel {
-    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--deep-purple) 0%, var(--bright-blue) 100%);
+    color: var(--primary-white);
   }
 `;
 
@@ -318,7 +301,7 @@ const ChallengeArrow = styled.div`
   top: 50%;
   transform: translateY(-50%);
   font-size: 3rem;
-  color: #f59e0b;
+  color: var(--amber);
   z-index: 10;
   
   @media (max-width: 768px) {
@@ -332,9 +315,9 @@ const ChallengeArrow = styled.div`
 // Quote Section
 const QuoteSection = styled.section`
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  background: linear-gradient(135deg, var(--dark-gray) 0%, var(--text-color) 100%);
   text-align: center;
-  color: white;
+  color: var(--primary-white);
 `;
 
 const QuoteContainer = styled.div`
@@ -352,7 +335,7 @@ const QuoteText = styled.blockquote`
   &::after {
     content: '"';
     font-size: 4rem;
-    color: #f59e0b;
+    color: var(--amber);
     position: absolute;
   }
   
@@ -369,16 +352,16 @@ const QuoteText = styled.blockquote`
 
 const QuoteAuthor = styled.cite`
   font-size: 1.2rem;
-  color: #d1d5db;
+  color: var(--light-gray-2);
   font-style: normal;
 `;
 
 // CTA Section
 const CTASection = styled.section`
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  background: linear-gradient(135deg, var(--vibrant-green) 0%, var(--teal) 100%);
   text-align: center;
-  color: white;
+  color: var(--primary-white);
 `;
 
 const CTATitle = styled.h2`
@@ -388,8 +371,8 @@ const CTATitle = styled.h2`
 `;
 
 const CTAButton = styled.button`
-  background: white;
-  color: #059669;
+  background: var(--primary-white);
+  color: var(--vibrant-green);
   border: none;
   padding: 1rem 3rem;
   font-size: 1.2rem;
@@ -397,12 +380,12 @@ const CTAButton = styled.button`
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    background: #f8fafc;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    background: var(--light-gray);
   }
 `;
 
@@ -498,7 +481,7 @@ const History = () => {
       <NameRevealSection>
         <NameRevealContainer>
           <RevealOnScroll>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#1e40af', marginBottom: '2rem' }}>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--deep-purple)', marginBottom: '2rem' }}>
               The Story Behind Our Name
             </h2>
           </RevealOnScroll>
@@ -553,11 +536,11 @@ const History = () => {
             <SplitTitle>🏝️ The Challenge</SplitTitle>
             <SplitContent>
               <p><strong>Stranded on an island</strong>, Robinson Crusoe faced the ultimate test of survival. With limited resources and no outside help, he had to:</p>
-              <ul style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
-                <li>• Adapt to an unfamiliar environment</li>
-                <li>• Create solutions from scratch</li>
-                <li>• Build sustainable systems</li>
-                <li>• Never give up despite setbacks</li>
+              <ul style={{ marginTop: '1rem', fontSize: '1.1rem', listStylePosition: 'inside', paddingLeft: 0 }}>
+                <li>Adapt to an unfamiliar environment</li>
+                <li>Create solutions from scratch</li>
+                <li>Build sustainable systems</li>
+                <li>Never give up despite setbacks</li>
               </ul>
             </SplitContent>
           </RevealOnScroll>
@@ -569,11 +552,11 @@ const History = () => {
             <SplitTitle>📡 The Solution</SplitTitle>
             <SplitContent>
               <p><strong>In the telecommunications industry</strong>, companies face similar challenges. Robitel Group provides the same innovative spirit:</p>
-              <ul style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
-                <li>• Skilled technicians ready for any challenge</li>
-                <li>• Custom dashboard and KPI solutions</li>
-                <li>• Sustainable training programs</li>
-                <li>• Continuous innovation and support</li>
+              <ul style={{ marginTop: '1rem', fontSize: '1.1rem', listStylePosition: 'inside', paddingLeft: 0 }}>
+                <li>Skilled technicians ready for any challenge</li>
+                <li>Custom dashboard and KPI solutions</li>
+                <li>Sustainable training programs</li>
+                <li>Continuous innovation and support</li>
               </ul>
             </SplitContent>
           </RevealOnScroll>

@@ -22,10 +22,10 @@ const WhatWeDoBlock = styled.section`
     position: absolute;
     inset: -8px 0 -8px 0; /* extend slightly beyond */
     background-image:
-      radial-gradient(circle at 12% 18%, rgba(53,36,240,0.06) 0 1px, transparent 1px),
-      radial-gradient(circle at 62% 74%, rgba(103,232,249,0.06) 0 1px, transparent 1px),
-      linear-gradient(to right, rgba(53,36,240,0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(53,36,240,0.06) 1px, transparent 1px);
+      radial-gradient(circle at 12% 18%, rgba(88, 101, 242, 0.06) 0 1px, transparent 1px),
+      radial-gradient(circle at 62% 74%, rgba(103, 232, 249, 0.06) 0 1px, transparent 1px),
+      linear-gradient(to right, rgba(88, 101, 242, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(88, 101, 242, 0.06) 1px, transparent 1px);
     background-size: auto, auto, 48px 48px, 48px 48px;
     background-position: center;
     pointer-events: none;
@@ -45,8 +45,8 @@ const WhatWeDoGrid = styled.div`
 
 /* Split-styled heading: solid 'What' + gradient 'we do' with slide-in */
 const slideInGlow = keyframes`
-  0% { opacity: 0; transform: translateX(-14px); text-shadow: 0 0 0 rgba(53,36,240,0); }
-  100% { opacity: 1; transform: translateX(0); text-shadow: 0 0 12px rgba(53,36,240,0.18); }
+  0% { opacity: 0; transform: translateX(-14px); text-shadow: 0 0 0 rgba(88, 101, 242, 0); }
+  100% { opacity: 1; transform: translateX(0); text-shadow: 0 0 12px rgba(88, 101, 242, 0.18); }
 `;
 
 const WhatHeading = styled.h2`
@@ -84,15 +84,15 @@ const SignalUnderline = styled.div`
   margin: 0.25rem auto 0.65rem;
   border-radius: 4px;
   background: linear-gradient(90deg,
-    rgba(53,36,240,0.0),
-    rgba(53,36,240,0.85),
-    rgba(103,232,249,0.9),
-    rgba(53,36,240,0.85),
-    rgba(53,36,240,0.0)
+    rgba(88, 101, 242, 0.0),
+    rgba(88, 101, 242, 0.85),
+    rgba(103, 232, 249, 0.9),
+    rgba(88, 101, 242, 0.85),
+    rgba(88, 101, 242, 0.0)
   );
   background-size: 200% 100%;
   animation: ${waveShift} 1600ms linear infinite;
-  box-shadow: 0 0 10px rgba(103,232,249,0.35);
+  box-shadow: 0 0 10px rgba(103, 232, 249, 0.35);
 `;
 
 /* Tagline under What We Do heading */
@@ -101,7 +101,8 @@ const WhatTagline = styled.p`
   z-index: 1;
   margin: -0.15rem auto 0.6rem;
   text-align: center;
-  color: rgba(0,0,0,0.72);
+  color: var(--text-color);
+  opacity: 0.72;
   max-width: 820px;
   line-height: 1.6;
   font-size: clamp(1rem, 2.2vw, 1.1rem);
@@ -116,14 +117,14 @@ const WhatCTA = styled(Link)`
   padding: 0.45rem 0.8rem;
   border-radius: 999px;
   text-decoration: none;
-  background: rgba(53,36,240,0.06);
+  background: rgba(88, 101, 242, 0.06);
   color: var(--deep-purple);
   font-weight: 700;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
   width: max-content;
 
-  &:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); background: rgba(53,36,240,0.08); }
+  &:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08); background: rgba(88, 101, 242, 0.08); }
 `;
 
 /* Full-bleed wrapper to make a child span entire viewport width */
@@ -180,8 +181,8 @@ const WhatWeDoOverlay = styled.div`
   /* text sits on colored panel */
   > div { max-width: 720px; }
   h3, p {
-    color: #ffffff;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    color: var(--primary-white);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     text-align: left;
   }
 `;
@@ -237,8 +238,8 @@ const BannerBackdrop = styled.div`
     pointer-events: none;
     background: ${({ $imageLeft }) =>
       $imageLeft
-        ? "linear-gradient(to left, rgba(53,36,240,1) 0%, rgba(53,36,240,1) 46%, rgba(53,36,240,0.44) 52%, rgba(53,36,240,0.32) 58%, rgba(53,36,240,0.22) 66%, rgba(53,36,240,0.12) 74%, rgba(53,36,240,0.06) 84%, rgba(53,36,240,0.00) 92%)"
-        : "linear-gradient(to right, rgba(53,36,240,1) 0%, rgba(53,36,240,1) 46%, rgba(53,36,240,0.44) 52%, rgba(53,36,240,0.32) 58%, rgba(53,36,240,0.22) 66%, rgba(53,36,240,0.12) 74%, rgba(53,36,240,0.06) 84%, rgba(53,36,240,0.00) 92%)"};
+        ? 'linear-gradient(to left, rgb(88, 101, 242) 0%, rgb(88, 101, 242) 46%, rgba(88, 101, 242, 0.44) 52%, rgba(88, 101, 242, 0.32) 58%, rgba(88, 101, 242, 0.22) 66%, rgba(88, 101, 242, 0.12) 74%, rgba(88, 101, 242, 0.06) 84%, rgba(88, 101, 242, 0) 92%)'
+        : 'linear-gradient(to right, rgb(88, 101, 242) 0%, rgb(88, 101, 242) 46%, rgba(88, 101, 242, 0.44) 52%, rgba(88, 101, 242, 0.32) 58%, rgba(88, 101, 242, 0.22) 66%, rgba(88, 101, 242, 0.12) 74%, rgba(88, 101, 242, 0.06) 84%, rgba(88, 101, 242, 0) 92%)'};
   }
 `;
 
@@ -246,10 +247,10 @@ const BannerBackdrop = styled.div`
 
 const WhatWeDoCard = styled.div`
   background: var(--primary-white);
-  border: 1px solid rgba(53, 36, 240, 0.15);
+  border: 1px solid rgba(88, 101, 242, 0.15);
   border-radius: 12px;
   padding: 1rem;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
   height: 100%; /* fill available column height */
   display: flex;
   flex-direction: column;
@@ -375,18 +376,18 @@ const Card = styled.div`
   border: 1px solid var(--aqua);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
   transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
   will-change: transform, box-shadow;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
     border-color: var(--teal);
   }
 
   &:focus-within {
-    outline: 3px solid rgba(20, 184, 166, 0.35);
+    outline: 3px solid rgba(13, 202, 240, 0.35);
     outline-offset: 2px;
   }
 `;
@@ -406,11 +407,11 @@ const HeroSurface = styled.div`
   padding: 0.3rem 0.8rem 0.9rem; /* bring heading closer to top, keep some bottom padding */
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
   background-image:
-    linear-gradient(135deg, rgba(53,36,240,0.08), rgba(103,232,249,0.10)),
-    linear-gradient(to right, rgba(53,36,240,0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(53,36,240,0.08) 1px, transparent 1px);
+    linear-gradient(135deg, rgba(88, 101, 242, 0.08), rgba(103, 232, 249, 0.1)),
+    linear-gradient(to right, rgba(88, 101, 242, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(88, 101, 242, 0.08) 1px, transparent 1px);
   background-size: auto, 32px 32px, 32px 32px;
   background-position: center;
 `;
@@ -479,7 +480,8 @@ const HeroHeading = styled.h1`
 
 const HeroSubheading = styled.p`
   font-size: 1.1rem;
-  color: rgba(0,0,0,0.75);
+  color: var(--text-color);
+  opacity: 0.75;
   line-height: 1.65;
   margin: 0;
 `;
@@ -510,15 +512,15 @@ const Col = styled.div``;
 const ImagePlaceholder = styled.div`
   height: 260px;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(53,36,240,0.12), rgba(103,232,249,0.2));
-  border: 1px dashed rgba(53,36,240,0.35);
+  background: linear-gradient(135deg, rgba(88, 101, 242, 0.12), rgba(103, 232, 249, 0.2));
+  border: 1px dashed rgba(88, 101, 242, 0.35);
 `;
 
 const AboutImage = styled.img`
   width: 100%;
   height: auto;
   border-radius: 14px;
-  border: 1px solid rgba(53, 36, 240, 0.15);
+  border: 1px solid rgba(88, 101, 242, 0.15);
   background: #f8fbff;
   display: block;
 `;
@@ -541,7 +543,7 @@ const StatCard = styled.div`
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 `;
 
 const StatNumber = styled.div`
@@ -552,7 +554,8 @@ const StatNumber = styled.div`
 
 const StatLabel = styled.div`
   font-size: 0.95rem;
-  color: rgba(0,0,0,0.7);
+  color: var(--text-color);
+  opacity: 0.7;
 `;
 
 /* New: Values grid */
@@ -596,11 +599,11 @@ const ValueCard = styled.div`
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 22px rgba(0,0,0,0.07);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.07);
     border-color: var(--teal);
   }
   &:focus-within {
-    outline: 3px solid rgba(20, 184, 166, 0.35);
+    outline: 3px solid rgba(13, 202, 240, 0.35);
     outline-offset: 2px;
   }
 `;
@@ -612,12 +615,12 @@ const WhyCard = styled.div`
   padding: 1rem 0.9rem;
   text-align: center;
   border: 1px solid rgba(241, 228, 209, 0.95);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
   transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
   will-change: transform, box-shadow;
 
-  &:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); border-color: var(--teal); }
-  &:focus-within { outline: 3px solid rgba(20, 184, 166, 0.35); outline-offset: 2px; }
+  &:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08); border-color: var(--teal); }
+  &:focus-within { outline: 3px solid rgba(13, 202, 240, 0.35); outline-offset: 2px; }
 `;
 
 const WhyIcon = styled.span`
@@ -627,10 +630,10 @@ const WhyIcon = styled.span`
   height: 56px;
   border-radius: 999px;
   margin: 0 auto 0.45rem;
-  background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.18), rgba(6,182,212,0.18)), linear-gradient(135deg, #2563eb, #06b6d4);
-  color: #fff;
+  background: radial-gradient(circle at 30% 30%, rgba(88, 101, 242, 0.18), rgba(13, 202, 240, 0.18)), linear-gradient(135deg, var(--bright-blue), var(--teal));
+  color: var(--primary-white);
   font-size: 1.25rem;
-  box-shadow: 0 10px 22px rgba(0,0,0,0.08), 0 0 0 4px rgba(56,189,248,0.18) inset;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08), 0 0 0 4px rgba(13, 202, 240, 0.18) inset;
 `;
 
 const WhyHeadline = styled.div`
@@ -641,7 +644,8 @@ const WhyHeadline = styled.div`
 
 const WhyText = styled.p`
   margin: 0;
-  color: rgba(0,0,0,0.75);
+  color: var(--text-color);
+  opacity: 0.75;
   line-height: 1.6;
 `;
 
@@ -654,8 +658,8 @@ const CommitmentBanner = styled.section`
   margin-left: -50vw;
   margin-right: -50vw;
   margin-top: clamp(1.5rem, 4vw, 2.5rem);
-  background: linear-gradient(135deg, #2563eb, #06b6d4);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--bright-blue), var(--teal));
+  color: var(--primary-white);
 `;
 
 const CommitmentInner = styled.div`
@@ -668,13 +672,14 @@ const CommitmentInner = styled.div`
 const CommitmentTitle = styled.h2`
   margin: 0 0 0.6rem 0;
   font-size: clamp(1.9rem, 5vw, 2.5rem);
-  color: #ffffff;
+  color: var(--primary-white);
 `;
 
 const CommitmentText = styled.p`
   margin: 0.1rem auto 1rem;
   max-width: 860px;
-  color: rgba(255,255,255,0.92);
+  color: var(--primary-white);
+  opacity: 0.92;
   line-height: 1.7;
   font-size: clamp(1rem, 2.2vw, 1.1rem);
 `;
@@ -685,14 +690,14 @@ const CommitmentCTA = styled(Link)`
   justify-content: center;
   margin-top: 0.25rem;
   padding: 0.7rem 1.1rem;
-  background: #ffffff;
-  color: #0ea5b7;
+  background: var(--primary-white);
+  color: var(--teal);
   font-weight: 700;
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   transition: transform 160ms ease, box-shadow 160ms ease;
-  &:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
+  &:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18); }
 `;
 
  

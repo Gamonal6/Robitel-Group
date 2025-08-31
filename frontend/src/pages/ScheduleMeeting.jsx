@@ -1,4 +1,32 @@
 import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+
+const MeetingContainer = styled.div`
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #f8f9fa; // A light background for the page
+`;
+
+const Title = styled.h1`
+  font-size: 2.5rem;
+  color: var(--deep-purple);
+  margin-bottom: 1rem;
+`;
+
+const Subtitle = styled.p`
+  font-size: 1.2rem;
+  color: var(--text-color);
+  opacity: 0.9;
+  margin-bottom: 2rem;
+`;
+
+const CalendlyWrapper = styled.div`
+  min-width: 320px;
+  height: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+`;
 
 const ScheduleMeeting = () => {
   const calendlyUrl = 'https://calendly.com/henriquegamonal6/30min';
@@ -6,12 +34,11 @@ const ScheduleMeeting = () => {
 
   useEffect(() => {
     let retries = 0;
-    const maxRetries = 20; // ~4s total if interval=200ms
+    const maxRetries = 20;
     const interval = 200;
 
     const tryInit = () => {
       if (window.Calendly && typeof window.Calendly.initInlineWidget === 'function' && containerRef.current) {
-        // Clear previous content (in case of hot reload/nav)
         containerRef.current.innerHTML = '';
         window.Calendly.initInlineWidget({
           url: calendlyUrl,
@@ -34,11 +61,11 @@ const ScheduleMeeting = () => {
   }, [calendlyUrl]);
 
   return (
-    <div>
-      <h1>Schedule a Meeting</h1>
-      <p style={{ color: '#6b7280' }}>Use the scheduler below to book a 30-minute meeting.</p>
-      <div ref={containerRef} style={{ minWidth: '320px', height: 800 }} />
-    </div>
+    <MeetingContainer>
+      <Title>Schedule a Meeting</Title>
+      <Subtitle>Use the scheduler below to book a 30-minute meeting.</Subtitle>
+      <CalendlyWrapper ref={containerRef} />
+    </MeetingContainer>
   );
 };
 
